@@ -18,7 +18,8 @@ type HTTPServer struct{
 
 
 
- 
+
+	
 type Config struct{
 	Env string `yaml:"env" env:"ENV" env-required:"true" env-default:"production"`// to use in other packages
  StoragePath string `yaml:"storage_path" env-required:"true"`

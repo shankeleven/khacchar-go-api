@@ -13,7 +13,7 @@ import (
 // or use a package "cleanenv" , we are using those `` (struct tags) because of these
  
 type HTTPServer struct{
-	Addr string 
+	Addr string `yaml:"address" env-required:"true" env-default:"6969"` // default not good for production
  }
 
 

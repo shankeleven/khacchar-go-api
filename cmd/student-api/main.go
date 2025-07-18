@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
-
-
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"github.com/shankeleven/student-api/internal/config"
+)
 
 // some structure basics:
 /*
@@ -15,5 +18,30 @@ we had virt-launcher for example
 
 
 func main(){
-	fmt.Println("working fine")
+	 // load config
+		fmt.Println("Server started")
+
+
+		cfg:= config.MustLoad()
+		// database setup
+		// server routing 
+
+	router:=	http.NewServeMux()
+	router.HandleFunc("GET /",func(w http.ResponseWriter , r *http.Request){
+		w.Write([]byte("Pranaam!"))
+	})
+
+		// setup the server
+		server:= http.Server{
+			Addr: cfg.Addr,
+			Handler: router,
+		}
+
+
+		err:= server.ListenAndServe()
+		if(err!=nil){
+			log.Fatal("server not started because :", err.Error())
+		}
+
+	fmt.Println("working fine") // not visible because server.ListenAndServe is blocking
 }
